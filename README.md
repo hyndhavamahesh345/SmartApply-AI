@@ -9,36 +9,23 @@
 
 ---
 
+## 🏛️ Project Vision
+**SmartApply AI** is an enterprise-grade recruiting intelligence tool that bridges the gap between high-potential candidates and robotic applicant tracking systems. By leveraging the **Google Gemini 1.5 Flash** large language model through a sophisticated multi-agent orchestration layer, it turns generic resumes into highly-targeted personal branding assets.
+
 ## 💡 The Problem
-Job seekers spend an average of **3 to 4 hours per application** manually tailoring resumes and writing cover letters. Despite this effort, **75% of resumes are rejected by ATS systems** before reaching a human recruiter. Generic applications often fail to highlight the specific keywords and achievements that align with job requirements.
+Job seekers often spend **hours** manually tailoring their resumes for every application. Even then, **75% of qualified resumes** are rejected by ATS systems before they reach a human recruiter due to missing keywords or poor formatting.
 
 ## ✨ The Solution
-**SmartApply AI** is an intelligent, multi-agent system designed to bridge the gap between candidate qualifications and recruiter expectations. Powered by **Google Gemini 1.5 Flash** and orchestrated by **CrewAI**, it performs a deep analysis of any job description against your resume, identifies skill gaps, optimizes your professional summary and bullet points, and generates a compelling, personalized cover letter—all in under 60 seconds.
-
----
-
-## 🛠️ Tech Stack
-
-### Frontend
-- **Framework**: [React 18](https://reactjs.org/) with [Vite](https://vitejs.dev/)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/)
-- **Animations**: [Framer Motion](https://www.framer.com/motion/)
-- **Transitions**: [React Router DOM](https://reactrouter.com/)
-- **Media**: [React Dropzone](https://react-dropzone.js.org/) for PDF uploads
-- **API Communication**: [Axios](https://axios-http.com/)
-
-### Backend
-- **Core**: [Python Flask](https://flask.palletsprojects.com/)
-- **AI Orchestration**: [CrewAI](https://www.crewai.com/)
-- **Deep Learning Model**: [Google Gemini 1.5 Flash](https://deepmind.google/technologies/gemini/)
-- **PDF Processing**: [PyPDF2](https://pypdf2.readthedocs.io/)
-- **Environment**: [python-dotenv](https://github.com/theskumar/python-dotenv)
+Our 3-agent intelligence pipeline automates the entire tailoring process:
+- **Semantic Gap Analysis**: Identifies missing skills and industry keywords.
+- **Resume Optimization**: Rewrites professional summaries and achievements with 100% truthfulness.
+- **Compelling Narrative**: Crafts personalized, high-conversion cover letters.
 
 ---
 
 ## 🏗️ System Architecture
 
-SmartApply AI is built with a decoupled client-server architecture, ensuring high performance and scalability.
+SmartApply AI utilizes a high-performance, decoupled architecture to handle multi-agent long-running processes efficiently.
 
 ```mermaid
 graph TD
@@ -58,86 +45,80 @@ graph TD
     B -->|JSON Response| A
 ```
 
-### Data Flow Overview
-1.  **Frontend**: User uploads a PDF and pastes a job description.
-2.  **API Layer**: Flask validates the input and calls the `ResumeProcessor` for text extraction.
-3.  **Intelligence Layer**: CrewAI kicks off a sequential process where three specialized agents collaborate, using the shared context of the previous agent's findings.
-4.  **LLM Layer**: Each agent communicates with the Gemini-1.5-Flash model to perform complex reasoning and text generation.
-5.  **Output**: The final optimized results are returned to the React frontend for real-time visualization.
+---
+
+## 🤖 Deep-Dive: AI Agent Pipeline
+
+The intelligence layer is powered by **CrewAI**, orchestrating three distinct agents in a sequential task workflow:
+
+| Agent | Role | Responsibility |
+| :--- | :--- | :--- |
+| **Career Analyst** | 🧠 Intelligence | Performs semantic analysis of Job Description vs. Resume. Calculates match percentage. |
+| **Resume Strategist** | 🖋️ Optimization | Rewrites professional summaries and bullet points using targeted industry lexicon. |
+| **Copy Specialist** | ✉️ Persuasion | Crafts personalized, 3-paragraph cover letters with unique hooks and professional tone. |
 
 ---
 
-## 🤖 AI Agent Architecture
+## 🛠️ Technology Stack
 
-SmartApply AI employs a **Sequential Pipeline of 3 Specialized Agents**:
+### **Frontend Architecture**
+- **Framework**: `React 18` + `Vite` for ultra-fast development and optimized builds.
+- **Styling Engine**: `Tailwind CSS` for a bespoke, premium dark-themed UI.
+- **Animation System**: `Framer Motion` for sophisticated micro-interactions and transitions.
+- **Utilities**: `Axios` (API Calls), `React Dropzone` (PDF Processing), `React Router DOM`.
 
-1.  **📊 Career Intelligence Analyst (Agent 1)**: Performs a semantic gap analysis, identifies missing industry-standard keywords, and calculates a baseline "Match Percentage."
-2.  **🖋️ Professional Resume Strategist (Agent 2)**: Re-writes the resume's professional summary and highlights key achievements, ensuring high ATS compatibility while maintaining 100% truthfulness.
-3.  **✉️ Persuasive Communication Specialist (Agent 3)**: Leverages findings from the previous agents to craft a compelling, 3-paragraph cover letter with a unique hook and a confident professional tone.
+### **Backend Infrastructure**
+- **API Server**: `Python Flask` providing a robust RESTful API.
+- **Orchestration**: `CrewAI` for autonomous multi-agent task management.
+- **Large Language Model**: `Google Gemini 1.5 Flash` for industrial-strength reasoning.
+- **PDF Engine**: `PyPDF2` for accurate, high-speed text extraction.
 
 ---
 
-## 🚀 Getting Started
+## 🚀 Installation & Deployment
 
-### Prerequisites
-- Python 3.12+
-- Node.js 18+
-- [Google AI Studio API Key](https://aistudio.google.com/)
+### **Prerequisites**
+- **Python**: v3.12 or newer
+- **Node.js**: v18 or newer
+- **Google AI Studio Key**: Required for Gemini LLM access
 
-### Installation
-
-#### 1. Clone the repository
+### **1. Local Environment Setup**
 ```bash
-git clone https://github.com/your-username/smartapply-ai.git
+# Clone the repository
+git clone https://github.com/hyndhavamahesh345/SmartApply-AI.git
 cd smartapply-ai
-```
 
-#### 2. Backend Setup
-```bash
+# Backend Configuration
 cd backend
 python -m pip install -r requirements.txt
-```
-Create a `.env` file in the root directory:
-```env
-GEMINI_API_KEY=your_gemini_api_key_here
+
+# Create .env file in the root directory
+# GEMINI_API_KEY=your_key_here
 ```
 
-#### 3. Frontend Setup
+### **2. Running the System**
 ```bash
+# Start Backend (Port 5000)
+cd backend
+python app.py
+
+# Start Frontend (Port 5173)
 cd frontend
 npm install
+npm run dev
 ```
 
-### Running the Application
-
-1.  **Start the Backend**:
-    ```bash
-    cd backend
-    python app.py
-    ```
-    The API will be available at `http://localhost:5000`.
-
-2.  **Start the Frontend**:
-    ```bash
-    cd frontend
-    npm run dev
-    ```
-    Open your browser to `http://localhost:5173`.
-
 ---
 
-## 📈 Key Features
+## 📈 System Roadmap
+- [ ] **Multi-Resume Support**: Save and manage different resume versions.
+- [ ] **Direct PDF Export**: Export tailored resumes directly to high-quality PDF.
+- [ ] **LinkedIn Integration**: Sync skill gaps directly with your profile.
+- [ ] **Email Automation**: One-click application via integrated email clients.
 
-- **Circular ATS Progress Tracking**: Visualize your score improvement before and after optimization.
-- **Skill Gap Heatmap**: Instantly see which core requirements you're currently missing.
-- **Micro-Copy Tools**: One-click copy for tailored bullet points and summaries.
-- **JSON Export**: Download your complete analysis and generated content for future reference.
-- **Premium UX**: Responsive, dark-themed interface with smooth Framer Motion transitions.
-
----
-
-## 📝 License
-Distributed under the MIT License. See `LICENSE` for more information.
+## 📝 License & Contact
+SmartApply AI is released under the **MIT License**. For enterprise support or custom integration inquiries, please contact the development team through the repository issues page.
 
 ---
-*Developed with Passion by SmartApply AI Team*
+*Crafted for candidates. Optimized for results.*
+
