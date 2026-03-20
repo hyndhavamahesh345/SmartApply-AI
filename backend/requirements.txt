@@ -1,0 +1,8 @@
+flask
+flask-cors
+crewai
+crewai-tools
+PyPDF2
+python-dotenv
+langchain-google-genai
+google-generativeai
